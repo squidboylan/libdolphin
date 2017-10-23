@@ -1,18 +1,42 @@
 start_pos:
-  1: "00453080"
-  2: "00453F10"
-  3: "00454DA0"
-  4: "00455C30"
+  1: "00453130"
+  2: "00453FC0"
+  3: "00454E50"
+  4: "00455CE0"
 offset:
-  "00":
-    name: "state"
+  "EC":
+    name: "h_vel_si"
+    type: "<f"
+    index: 0
+  "F4":
+    name: "v_vel_si"
+    type: "<f"
+    index: 0
+  "2C":
+    name: "direction"
     type: "<I"
     index: 0
-  "60":
-    name: "percentage"
-    type: "<HH"
-    index: 1
-  "8E":
-    name: "stocks"
-    type: "<HBB"
-    index: 2
+    #  "80":
+    #    name: "h_vel_si"
+    #    type: "<f"
+    #    index: 0
+    #  "84":
+    #    name: "v_vel_si"
+    #    type: "<f"
+    #    index: 0
+    #  "8C":
+    #    name: "h_vel_ai"
+    #    type: "<f"
+    #    index: 0
+    #  "90":
+    #    name: "v_vel_ai"
+    #    type: "<f"
+    #    index: 0
+    #  "C8":
+    #    name: "x_delta"
+    #    type: "<f"
+    #    index: 0
+    #  "CC":
+    #    name: "y_delta"
+    #    type: "<f"
+    #    index: 0
