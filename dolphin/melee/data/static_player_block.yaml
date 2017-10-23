@@ -8,6 +8,55 @@ offset:
     name: "state"
     type: "<I"
     index: 0
+  "08":
+    name: "ID"
+    type: "<H"
+    index: 0
+  "0A":
+    name: "type"
+    type: "<H"
+    index: 0
+  "0C":
+    name: "transformed"
+    type: "<H"
+    index: 0
+  "10":
+    name: "nametag_x"
+    type: "<F"
+    index: 0
+  "14":
+    name: "nametag_y"
+    type: "<F"
+    index: 0
+  "18":
+    name: "nametag_z"
+    type: "<F"
+    index: 0
+  "1C":
+    name: "spawn_pos_x"
+    type: "<F"
+    index: 0
+  "20":
+    name: "spawn_pos_y"
+    type: "<F"
+    index: 0
+  "24":
+    name: "spawn_pos_z"
+    type: "<F"
+    index: 0
+  "28":
+    name: "final_spawn_pos_x"
+    type: "<F"
+    index: 0
+  "2C":
+    name: "final_spawn_pos_y"
+    type: "<F"
+    index: 0
+  "30":
+    name: "final_spawn_pos_z"
+    type: "<F"
+    index: 0
+
   "60":
     name: "percentage"
     type: "<HH"
