@@ -1,42 +1,34 @@
 start_pos:
-  1: "00453130"
-  2: "00453FC0"
-  3: "00454E50"
-  4: "00455CE0"
+  1: "00453130 2C"
+  2: "00453FC0 2C"
+  3: "00454E50 2C"
+  4: "00455CE0 2C"
 offset:
-  "EC":
-    name: "h_vel_si"
-    type: "<f"
-    index: 0
-  "F4":
-    name: "v_vel_si"
-    type: "<f"
-    index: 0
   "2C":
     name: "direction"
     type: "<I"
     index: 0
-    #  "80":
-    #    name: "h_vel_si"
-    #    type: "<f"
-    #    index: 0
-    #  "84":
-    #    name: "v_vel_si"
-    #    type: "<f"
-    #    index: 0
-    #  "8C":
-    #    name: "h_vel_ai"
-    #    type: "<f"
-    #    index: 0
-    #  "90":
-    #    name: "v_vel_ai"
-    #    type: "<f"
-    #    index: 0
-    #  "C8":
-    #    name: "x_delta"
-    #    type: "<f"
-    #    index: 0
-    #  "CC":
-    #    name: "y_delta"
-    #    type: "<f"
-    #    index: 0
+  "80":
+    name: "h_vel_si"
+    type: "<f"
+    index: 0
+  "84":
+    name: "v_vel_si"
+    type: "<f"
+    index: 0
+  "8C":
+    name: "h_vel_ai"
+    type: "<f"
+    index: 0
+  "90":
+    name: "v_vel_ai"
+    type: "<f"
+    index: 0
+  "C8":
+    name: "x_delta"
+    type: "<f"
+    index: 0
+  "CC":
+    name: "y_delta"
+    type: "<f"
+    index: 0
