@@ -11,10 +11,10 @@ offset:
     index: 0
   # Character ID, see character ID map file for info
   # THIS DOESNT SEEM TO WORK CURRENTLY FOR SOME REAON?
-  "08":
+  "04":
     name: "ID"
-    type: "<HH"
-    index: 1
+    type: "<I"
+    index: 0
   # 0 = Human, 1 = CPU, 2 = Demo, 3 = NA
   "0A":
     name: "type"

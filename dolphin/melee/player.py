@@ -60,7 +60,7 @@ class Player:
         if self.static_block_data['state'] == 2:
             print("Player: " + str(self.player_num))
             print(self.character_data)
-            #print(self.static_block_data)
+            print(self.static_block_data)
 
 if __name__ == "__main__":
     player = []

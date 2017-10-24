@@ -29,6 +29,30 @@ offset:
     name: "v_vel_ai"
     type: "<f"
     index: 0
+  "B0":
+    name: "x_pos"
+    type: "<f"
+    index: 0
+  "B4":
+    name: "y_pos"
+    type: "<f"
+    index: 0
+  "B8":
+    name: "z_pos"
+    type: "<f"
+    index: 0
+  "BC":
+    name: "x_pos_prev"
+    type: "<f"
+    index: 0
+  "C0":
+    name: "y_pos_prev"
+    type: "<f"
+    index: 0
+  "C4":
+    name: "z_pos_prev"
+    type: "<f"
+    index: 0
   # x of the previous frame - current x
   "C8":
     name: "x_delta"
