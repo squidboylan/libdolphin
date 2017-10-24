@@ -3,6 +3,7 @@ import yaml
 import binascii
 
 class Player:
+    # Initialize character memory dicts
     def __init__(self, player_num):
         with open("melee/data/static_player_block.yaml", "r") as f:
             self.static_block_config_file = yaml.load(f.read())
@@ -23,6 +24,7 @@ class Player:
         for i in self.character_data_config.keys():
             self.character_data[self.character_data_config[i]['name']] = 0
 
+    # Generate the dict of addresses from start addresses and offsets, as well
     def generate_config_from_offsets(self):
         start_pos = self.static_block_config_file['start_pos'][self.player_num]
         start_pos = binascii.unhexlify(start_pos)
@@ -39,6 +41,7 @@ class Player:
         for i in self.character_data_config_file['offset'].keys():
             self.character_data_config[start_pos.upper() + " " + i.upper()] = self.character_data_config_file['offset'][i]
 
+    # Take data and update the player data
     def update(self, data):
         if data[0] in self.static_block_config.keys():
             val = data[1].strip('\x00').zfill(8)
@@ -52,6 +55,7 @@ class Player:
                     binascii.unhexlify(val))[self.character_data_config[data[0]]['index']]
             self.character_data[self.character_data_config[data[0]]['name']] = val
 
+    # Print player data, this is useful for debugging
     def print_data(self):
         if self.static_block_data['state'] == 2:
             print("Player: " + str(self.player_num))

@@ -5,6 +5,7 @@ import yaml
 import binascii
 
 class GameState:
+    #Initialize the global data section
     def __init__(self, sock_path):
         self.players = []
         self.sock_path = sock_path
@@ -14,16 +15,24 @@ class GameState:
         with open("melee/data/globals.yaml", "r") as f:
             self.global_data_config = yaml.load(f.read())
 
+        #Initialize the global_data dict to use names as keys instead of
+        #addresses as configured in the yaml file
         self.global_data = {}
         for i in self.global_data_config.keys():
             self.global_data[self.global_data_config[i]["name"]] = 0
 
+   #Bind to the socket for reading from later
     def sock_bind(self):
         self.sock = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
         self.sock.bind(self.sock_path)
 
+    #Read from the socket and upate the appropriate dictionaries
     def update(self):
+        #Read from the socket
         data = self.sock.recvfrom(9096)[0].decode('utf-8').splitlines()
+
+        #If the address of the data is in the global data section, update the
+        #global data, else update the players
         if data[0] in self.global_data_config.keys():
             val = data[1].strip('\x00').zfill(8)
             val = struct.unpack(self.global_data_config[data[0]]['type'],
@@ -33,6 +42,8 @@ class GameState:
             for i in range(4):
                 self.players[i].update(data)
 
+    #Print out the values scraped from the emulator, this is for debugging
+    #purposes, has little to no use in an actual program
     def print_state(self):
         for i in range(4):
             self.players[i].print_data()

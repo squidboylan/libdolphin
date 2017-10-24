@@ -4,30 +4,37 @@ start_pos:
   3: "00454E50 2C"
   4: "00455CE0 2C"
 offset:
+  # Direction the character is pointing, -1 for left, 1 for right
   "2C":
     name: "direction"
-    type: "<I"
+    type: "<f"
     index: 0
+  # Horizontal vel, self inflicted
   "80":
     name: "h_vel_si"
     type: "<f"
     index: 0
+  # Vertical vel, self inflicted
   "84":
     name: "v_vel_si"
     type: "<f"
     index: 0
+  # Horizontal vel, attack inflicted
   "8C":
     name: "h_vel_ai"
     type: "<f"
     index: 0
+  # Vertical vel, attack inflicted
   "90":
     name: "v_vel_ai"
     type: "<f"
     index: 0
+  # x of the previous frame - current x
   "C8":
     name: "x_delta"
     type: "<f"
     index: 0
+  # y of the previous frame - current y
   "CC":
     name: "y_delta"
     type: "<f"

@@ -4,30 +4,38 @@ start_pos:
   3: "00454DA0"
   4: "00455C30"
 offset:
+  # 2 means In-Game, 0 otherwise
   "00":
     name: "state"
     type: "<I"
     index: 0
+  # Character ID, see character ID map file for info
+  # THIS DOESNT SEEM TO WORK CURRENTLY FOR SOME REAON?
   "08":
     name: "ID"
     type: "<HH"
     index: 1
+  # 0 = Human, 1 = CPU, 2 = Demo, 3 = NA
   "0A":
     name: "type"
     type: "<HH"
     index: 1
+  # 1 for normal 4 for transformed
   "0C":
     name: "transformed"
     type: "<HH"
     index: 1
+  # nametag x location
   "10":
     name: "nametag_x"
     type: "<f"
     index: 0
+  # nametag y location
   "14":
     name: "nametag_y"
     type: "<f"
     index: 0
+  # nametag z location
   "18":
     name: "nametag_z"
     type: "<f"
@@ -57,14 +65,17 @@ offset:
     type: "<f"
     index: 0
 
+  # Percentage/damage taken
   "60":
     name: "percentage"
     type: "<HH"
     index: 1
+  # Self deaths
   "8C":
     name: "suicides"
     type: "<HH"
     index: 1
+  # Player stocks remaining
   "8E":
     name: "stocks"
     type: "<HBB"

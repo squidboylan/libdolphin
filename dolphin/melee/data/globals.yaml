@@ -1,3 +1,4 @@
+# Location of p1's cursor on the character select screen
 01118DEC:
   name: p1_cursor_x
   type: "<f"
@@ -8,6 +9,7 @@
   type: "<f"
   index: 0
 
+# Location of p2's cursor on the character select screen
 0111826C:
   name: p2_cursor_x
   type: "<f"
@@ -18,6 +20,7 @@
   type: "<f"
   index: 0
 
+# Location of p3's cursor on the character select screen
 011176EC:
   name: p3_cursor_x
   type: "<f"
@@ -28,6 +31,7 @@
   type: "<f"
   index: 0
 
+# Location of p4's cursor on the character select screen
 01116B6C:
   name: p4_cursor_x
   type: "<f"
