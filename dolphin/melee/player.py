@@ -59,10 +59,12 @@ class Player:
         contents += "# Start of p" + str(self.player_num) + " contents\n"
         contents += "# Start of static block\n"
         for i in self.static_block_config.keys():
+            contents += "#" + self.static_block_config[i]['name'] + ' \n'
             contents += i + '\n'
 
         contents += "# Start of player data block\n"
         for i in self.character_data_config.keys():
+            contents += "#" + self.character_data_config[i]['name'] + '\n'
             contents += i + '\n'
 
         return contents

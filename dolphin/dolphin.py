@@ -33,7 +33,7 @@ if __name__ == "__main__":
     try:
         while True:
             game.update()
-            #game.print_state()
+            game.print_state()
     except:
         process.kill()
         raise
