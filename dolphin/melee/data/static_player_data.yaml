@@ -4,6 +4,16 @@ start_pos:
   3: "00454E50 2C"
   4: "00455CE0 2C"
 offset:
+  # Player spawn number
+  "08":
+    name: "spawn_num"
+    type: "<BBH"
+    index: 2
+  # Player slot
+  "0C":
+    name: "slot"
+    type: "<BBH"
+    index: 2
   # Direction the character is pointing, -1 for left, 1 for right
   "2C":
     name: "direction"

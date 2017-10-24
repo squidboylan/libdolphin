@@ -55,6 +55,18 @@ class Player:
                     binascii.unhexlify(val))[self.character_data_config[data[0]]['index']]
             self.character_data[self.character_data_config[data[0]]['name']] = val
 
+    def generate_locations_file(self, contents):
+        contents += "# Start of p" + str(self.player_num) + " contents\n"
+        contents += "# Start of static block\n"
+        for i in self.static_block_config.keys():
+            contents += i + '\n'
+
+        contents += "# Start of player data block\n"
+        for i in self.character_data_config.keys():
+            contents += i + '\n'
+
+        return contents
+
     # Print player data, this is useful for debugging
     def print_data(self):
         if self.static_block_data['state'] == 2:

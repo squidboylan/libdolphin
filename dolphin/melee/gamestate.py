@@ -42,6 +42,16 @@ class GameState:
             for i in range(4):
                 self.players[i].update(data)
 
+    def generate_locations_file(self):
+        contents = "#START OF GLOBAL DATA\n"
+        for i in self.global_data_config.keys():
+            contents += i + '\n'
+
+        for i in range(4):
+            contents = self.players[i].generate_locations_file(contents)
+
+        return contents
+
     #Print out the values scraped from the emulator, this is for debugging
     #purposes, has little to no use in an actual program
     def print_state(self):
