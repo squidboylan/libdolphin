@@ -12,8 +12,8 @@ offset:
   # Player slot
   "0C":
     name: "slot"
-    type: "<BBH"
-    index: 2
+    type: "<BBBB"
+    index: 3
   # Direction the character is pointing, -1 for left, 1 for right
   "2C":
     name: "direction"
