@@ -7,8 +7,8 @@ offset:
   # Player spawn number
   "08":
     name: "spawn_num"
-    type: "<BBH"
-    index: 2
+    type: "<I"
+    index: 0
   # Player slot
   "0C":
     name: "slot"
