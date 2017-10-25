@@ -43,17 +43,21 @@ class Player:
 
     # Take data and update the player data
     def update(self, data):
-        if data[0] in self.static_block_config.keys():
+        if data[0] in self.static_block_config:
             val = data[1].strip('\x00').zfill(8)
             val = struct.unpack(self.static_block_config[data[0]]['type'],
                     binascii.unhexlify(val))[self.static_block_config[data[0]]['index']]
             self.static_block_data[self.static_block_config[data[0]]['name']] = val
+            return 1
 
-        elif data[0] in self.character_data_config.keys():
+        elif data[0] in self.character_data_config:
             val = data[1].strip('\x00').zfill(8)
             val = struct.unpack(self.character_data_config[data[0]]['type'],
                     binascii.unhexlify(val))[self.character_data_config[data[0]]['index']]
             self.character_data[self.character_data_config[data[0]]['name']] = val
+            return 1
+
+        return 0
 
     def generate_locations_file(self, contents):
         contents += "# Start of p" + str(self.player_num) + " contents\n"

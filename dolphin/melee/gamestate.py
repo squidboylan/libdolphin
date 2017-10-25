@@ -33,14 +33,17 @@ class GameState:
 
         #If the address of the data is in the global data section, update the
         #global data, else update the players
-        if data[0] in self.global_data_config.keys():
+        if data[0] in self.global_data_config:
             val = data[1].strip('\x00').zfill(8)
             val = struct.unpack(self.global_data_config[data[0]]['type'],
                     binascii.unhexlify(val))[self.global_data_config[data[0]]['index']]
             self.global_data[self.global_data_config[data[0]]['name']] = val
         else:
             for i in range(4):
-                self.players[i].update(data)
+                r = self.players[i].update(data)
+                if r == 1:
+                    return
+
 
     def generate_locations_file(self):
         contents = "#START OF GLOBAL DATA\n"
