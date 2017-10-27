@@ -1,14 +1,15 @@
 import struct
 import yaml
 import binascii
+import os
 
 class Player:
     # Initialize character memory dicts
     def __init__(self, player_num):
-        with open("melee/data/static_player_block.yaml", "r") as f:
+        with open(os.path.dirname(__file__) + "/data/static_player_block.yaml", "r") as f:
             self.static_block_config_file = yaml.load(f.read())
 
-        with open("melee/data/static_player_data.yaml", "r") as f:
+        with open(os.path.dirname(__file__) + "/data/static_player_data.yaml", "r") as f:
             self.character_data_config_file = yaml.load(f.read())
 
         self.player_num = player_num

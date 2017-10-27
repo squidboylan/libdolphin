@@ -7,7 +7,7 @@ import struct
 import subprocess
 import binascii
 import yaml
-import melee.gamestate
+import libdolphin.melee.gamestate
 
 sock_path = "/home/squid/.local/share/dolphin-emu/MemoryWatcher/MemoryWatcher"
 locations_path = "/home/squid/.local/share/dolphin-emu/MemoryWatcher/Locations.txt"
@@ -16,7 +16,7 @@ try:
 except:
     pass
 
-game = melee.gamestate.GameState(sock_path)
+game = libdolphin.melee.gamestate.GameState(sock_path)
 locations_file_contents = game.generate_locations_file()
 
 with open(locations_path, 'w') as f:

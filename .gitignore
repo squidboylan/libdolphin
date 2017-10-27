@@ -1,2 +1,3 @@
 *.pyc
 venv
+libdolphin.egg-info

@@ -1,8 +1,9 @@
 import socket
-from melee.player import Player
+from libdolphin.melee.player import Player
 import struct
 import yaml
 import binascii
+import os
 
 class GameState:
     #Initialize the global data section
@@ -12,7 +13,7 @@ class GameState:
         for i in range(4):
             self.players.append(Player(i+1))
 
-        with open("melee/data/globals.yaml", "r") as f:
+        with open(os.path.dirname(__file__) + "/data/globals.yaml", "r") as f:
             self.global_data_config = yaml.load(f.read())
 
         #Initialize the global_data dict to use names as keys instead of
