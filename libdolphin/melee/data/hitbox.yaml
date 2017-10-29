@@ -1,0 +1,126 @@
+---
+start_pos:
+  1: "0914"
+  2: "0A4C"
+  3: "0B84"
+  4: "0CBC"
+offset:
+  "0":
+    name: "status"
+    type: "<I"
+    index: 0
+
+  "8":
+    name: "unstaled_damage"
+    type: "<I"
+    index: 0
+
+  "C":
+    name: "staled_damage"
+    type: "<f"
+    index: 0
+
+  "10":
+    name: "z_offset_from_bone"
+    type: "<f"
+    index: 0
+
+  "14":
+    name: "y_offset_from_bone"
+    type: "<f"
+    index: 0
+
+  "18":
+    name: "y_offset_from_bone"
+    type: "<f"
+    index: 0
+
+  "1C":
+    name: "size"
+    type: "<f"
+    index: 0
+
+  "20":
+    name: "knockback_angle"
+    type: "<I"
+    index: 0
+
+  "24":
+    name: "knockback_growth"
+    type: "<I"
+    index: 0
+
+  "28":
+    name: "weight_dependent_base_knockback"
+    type: "<I"
+    index: 0
+
+  "2C":
+    name: "base_knockback"
+    type: "<I"
+    index: 0
+
+  "30":
+    name: "element"
+    type: "<I"
+    index: 0
+
+  "34":
+    name: "shield_damage"
+    type: "<I"
+    index: 0
+
+  "38":
+    name: "hit_effects"
+    type: "<I"
+    index: 0
+
+  "3C":
+    name: "hit_effects_type"
+    type: "<I"
+    index: 0
+
+  "4C":
+    name: "z_position"
+    type: "<f"
+    index: 0
+
+  "50":
+    name: "y_position"
+    type: "<f"
+    index: 0
+
+  "54":
+    name: "x_position"
+    type: "<f"
+    index: 0
+
+  "58":
+    name: "last_z_position"
+    type: "<f"
+    index: 0
+
+  "5C":
+    name: "last_y_position"
+    type: "<f"
+    index: 0
+
+  "60":
+    name: "last_x_position"
+    type: "<f"
+    index: 0
+
+  "64":
+    name: "last_collision_z_position"
+    type: "<f"
+    index: 0
+
+  "64":
+    name: "last_collision_y_position"
+    type: "<f"
+    index: 0
+
+  "6C":
+    name: "last_collision_x_position"
+    type: "<f"
+    index: 0

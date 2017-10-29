@@ -28,6 +28,7 @@ except FileExistsError:
     pass
 
 process = subprocess.Popen("dolphin-emu -e /home/squid/.local/share/dolphin-emu/Games/smash-1.02.iso", shell=True)
+
 game.sock_bind()
 if __name__ == "__main__":
     try:
