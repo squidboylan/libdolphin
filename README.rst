@@ -22,3 +22,10 @@ Melee v1.02.
 The Melee memory locations and meanings are being drawn from
 https://docs.google.com/spreadsheets/d/1JX2w-r2fuvWuNgGb6D3Cs4wHQKLFegZe2jhbBuIhCG8/edit#gid=12
 which is a spreasheet maintained by the community of that information.
+
+Library Stability
+~~~~~~~~~~~~~~~~~
+
+Libdolphin is in the very early stages of development, variables will likely
+change names, classes may move around, etc. Please expect things to change
+until this message goes away and the library hits 1.0
