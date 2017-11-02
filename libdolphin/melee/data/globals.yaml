@@ -42,7 +42,30 @@
   type: "<f"
   index: 0
 
-  #003f0328:
-  #name: ready_banner
-  #type: "<I"
-  #index: 0
+004D7420:
+  name: frame_num
+  type: "<I"
+  index: 0
+
+  #013F0328:
+  #  name: ready_banner
+  #  type: "<I"
+  #  index: 0
+  #
+  #004D6CAD:
+  #  name: stage_select_1
+  #  type: "<I"
+  #  index: 0
+  #
+  #004D6CB1:
+  #  name: stage_select_2
+  #  type: "<I"
+  #  index: 0
+  #004D6CB5:
+  #  name: stage_select_3
+  #  type: "<I"
+  #  index: 0
+  #004D6CB9:
+  #  name: stage_select_4
+  #  type: "<I"
+  #  index: 0

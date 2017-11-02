@@ -5,6 +5,8 @@ import os
 import sys
 import struct
 import subprocess
+import time
+import datetime
 import binascii
 import yaml
 import libdolphin.melee.gamestate
@@ -42,14 +44,34 @@ if __name__ == "__main__":
     dolphin = Dolphin()
     dolphin.run()
     game = dolphin.game
+    curr_time = None
+    prev_time = None
+    frame_time = 1000000/60.0
+    sleep_time = None
     try:
         while True:
+            #prev_time = time.time()
+            #prev_time = datetime.datetime.now()
+            prev_frame = game.global_data['frame_num']
+
             game.update()
-            game.print_state()
+
             if game.players[1].static_block_data['state'] == 2:
-                #controller2.press_button(Buttons.A.value, Buttons.press.value)
-                #controller2.set_stick(Buttons.main_stick.value, "0", "0.5")
-                dolphin.controller2.set_trigger("L", "1")
+                if dolphin.controller2.input_queue.empty():
+                    dolphin.controller2.set_trigger("L", "1", 30)
+                    dolphin.controller2.set_trigger("L", "0", 30)
+
+            dolphin.controller2.next_input(game.global_data['frame_num'] - prev_frame)
+
+            #curr_time = datetime.datetime.now()
+            #diff = curr_time - prev_time
+            #sleep_time = (frame_time - diff.microseconds)/1000000.0
+            #curr_time = time.time()
+            #diff = curr_time - prev_time
+            #sleep_time = frame_time - diff
+            #print(sleep_time)
+            #if sleep_time > 0:
+                #time.sleep(sleep_time)
 
     except:
         dolphin.process.kill()
