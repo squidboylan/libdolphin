@@ -10,6 +10,7 @@ import datetime
 import binascii
 import yaml
 import libdolphin.melee.gamestate
+import libdolphin.melee.techskill
 from controller import *
 
 class Dolphin:
@@ -58,8 +59,14 @@ if __name__ == "__main__":
 
             if game.players[1].static_block_data['state'] == 2:
                 if dolphin.controller2.input_queue.empty():
-                    dolphin.controller2.set_trigger("L", "1", 30)
-                    dolphin.controller2.set_trigger("L", "0", 30)
+                    #dolphin.controller2.set_trigger("L", "1", 30)
+                    #dolphin.controller2.set_trigger("L", "0", 30)
+                    libdolphin.melee.techskill.wavedash("left",
+                            dolphin.controller2,
+                            game.players[1].character_data['jump_squat'])
+                    libdolphin.melee.techskill.wavedash("right",
+                            dolphin.controller2,
+                            game.players[1].character_data['jump_squat'])
 
             dolphin.controller2.next_input(game.global_data['frame_num'] - prev_frame)
 

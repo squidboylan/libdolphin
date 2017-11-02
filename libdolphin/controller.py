@@ -31,12 +31,12 @@ class Controller:
 
     # Set the state of the C or MAIN stick, X and Y coordinates are 0 - 1
     def set_stick(self, stick, x, y, frames):
-        self.input_queue.put(["SET " + stick + " " + x + " " + y + "\n", frames])
+        self.input_queue.put(["SET " + stick + " " + str(x) + " " + str(y) + "\n", frames])
 
     # Set the percentage of the trigger down, 0 = not pressed, 1 = pressed
     # fully, trigger buttons can also be activated as buttons
     def set_trigger(self, trigger, state, frames):
-        self.input_queue.put(["SET " + trigger + " " + state + "\n", frames])
+        self.input_queue.put(["SET " + trigger + " " + str(state) + "\n", frames])
 
     def next_input(self, frame_diff):
         if frame_diff == 0:

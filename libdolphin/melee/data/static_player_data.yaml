@@ -73,3 +73,8 @@ offset:
     name: "y_delta"
     type: "<f"
     index: 0
+  # Jump startup frames
+  "148":
+    name: "jump_squat"
+    type: "<f"
+    index: 0
