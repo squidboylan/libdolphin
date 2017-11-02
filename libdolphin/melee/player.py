@@ -5,7 +5,7 @@ import os
 
 class Player:
     # Initialize character memory dicts
-    def __init__(self, player_num):
+    def __init__(self, player_num, controller=None):
         with open(os.path.dirname(__file__) + "/data/static_player_block.yaml", "r") as f:
             self.static_block_config_file = yaml.load(f.read())
 
