@@ -39,8 +39,13 @@ class Dolphin:
     def run(self):
         self.process = subprocess.Popen("dolphin-emu -e /home/squid/.local/share/dolphin-emu/Games/smash-1.02.iso", shell=True)
 
-        self.controller2 = Controller("/home/squid/.local/share/dolphin-emu/Pipes/Bot2")
+        self.game.players[1].controller = Controller("/home/squid/.local/share/dolphin-emu/Pipes/Bot2")
         self.game.sock_bind()
+
+    def next_input(self, frame_diff):
+        for i in self.game.players:
+            if i.controller:
+                i.controller.next_input(frame_diff)
 
 if __name__ == "__main__":
     dolphin = Dolphin()
@@ -52,8 +57,6 @@ if __name__ == "__main__":
     sleep_time = None
     try:
         while True:
-            #prev_time = time.time()
-            #prev_time = datetime.datetime.now()
             prev_frame = game.global_data['frame_num']
 
             game.update()
@@ -61,43 +64,22 @@ if __name__ == "__main__":
 
 
             if game.players[1].static_block_data['state'] == 0:
-                if dolphin.controller2.input_queue.empty():
-                    libdolphin.melee.menu_helper.select_character(game,
-                            dolphin.controller2, "captain falcon",
+                if game.players[1].controller.input_queue.empty():
+                    libdolphin.melee.menu_helper.select_character(game, "captain falcon",
                             game.players[1])
-                    """
-                    dolphin.controller2.set_stick(libdolphin.controller.Buttons.main_stick.value,
-                            .75, 0.5, 1)
-                    dolphin.controller2.set_stick(libdolphin.controller.Buttons.main_stick.value,
-                            0.5, 0.5, 59)
-                    dolphin.controller2.set_stick(libdolphin.controller.Buttons.main_stick.value,
-                            0.5, .75, 1)
-                    dolphin.controller2.set_stick(libdolphin.controller.Buttons.main_stick.value,
-                            0.5, 0.5, 59)
-                    """
 
             if game.players[1].static_block_data['state'] == 2:
-                if dolphin.controller2.input_queue.empty():
-                    #dolphin.controller2.set_trigger("L", "1", 30)
-                    #dolphin.controller2.set_trigger("L", "0", 30)
+                if game.players[1].controller.input_queue.empty():
                     libdolphin.melee.techskill.wavedash("left",
-                            dolphin.controller2,
-                            game.players[1].character_data['jump_squat'])
+                            game.players[1])
+                    game.players[1].controller.set_stick(libdolphin.controller.Buttons.main_stick.value,
+                            0.5, 0.5, 5)
                     libdolphin.melee.techskill.wavedash("right",
-                            dolphin.controller2,
-                            game.players[1].character_data['jump_squat'])
+                            game.players[1])
+                    game.players[1].controller.set_stick(libdolphin.controller.Buttons.main_stick.value,
+                            0.5, 0.5, 5)
 
-            dolphin.controller2.next_input(game.global_data['frame_num'] - prev_frame)
-
-            #curr_time = datetime.datetime.now()
-            #diff = curr_time - prev_time
-            #sleep_time = (frame_time - diff.microseconds)/1000000.0
-            #curr_time = time.time()
-            #diff = curr_time - prev_time
-            #sleep_time = frame_time - diff
-            #print(sleep_time)
-            #if sleep_time > 0:
-                #time.sleep(sleep_time)
+            dolphin.next_input(game.global_data['frame_num'] - prev_frame)
 
     except:
         dolphin.process.kill()

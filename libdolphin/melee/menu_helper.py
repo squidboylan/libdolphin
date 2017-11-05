@@ -7,7 +7,8 @@ with open(os.path.dirname(__file__) + "/data/character_select.yaml", "r") as f:
 
 # THIS IS A HACK AND NEEDS TO BE CHANGED TO MAKE IT PERMANENT, BUT IT MAKES IT
 # EASIER TO TEST IF IT EXISTS AS A HACK FOR NOW
-def select_character(game, controller, character, player):
+def select_character(game, character, player):
+    controller = player.controller
     x = menu_data[character]['x']
     y = menu_data[character]['y']
     x_diff = x - game.global_data['p2_cursor_x']
