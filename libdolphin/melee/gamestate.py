@@ -30,20 +30,24 @@ class GameState:
     #Read from the socket and upate the appropriate dictionaries
     def update(self):
         #Read from the socket
-        data = self.sock.recvfrom(9096)[0].decode('utf-8').splitlines()
+        while True:
+            data = self.sock.recvfrom(9096)[0].decode('utf-8').splitlines()
 
-        #If the address of the data is in the global data section, update the
-        #global data, else update the players
-        if data[0] in self.global_data_config:
-            val = data[1].strip('\x00').zfill(8)
-            val = struct.unpack(self.global_data_config[data[0]]['type'],
-                    binascii.unhexlify(val))[self.global_data_config[data[0]]['index']]
-            self.global_data[self.global_data_config[data[0]]['name']] = val
-        else:
-            for i in range(4):
-                r = self.players[i].update(data)
-                if r == 1:
-                    return
+            #If the address of the data is in the global data section, update the
+            #global data, else update the players
+            if data[0] in self.global_data_config:
+                val = data[1].strip('\x00').zfill(8)
+                val = struct.unpack(self.global_data_config[data[0]]['type'],
+                        binascii.unhexlify(val))[self.global_data_config[data[0]]['index']]
+                self.global_data[self.global_data_config[data[0]]['name']] = val
+            else:
+                for i in range(4):
+                    r = self.players[i].update(data)
+                    if r == 1:
+                        return
+
+            if self.global_data_config[data[0]]['name'] == "frame_num":
+                return
 
 
     def generate_locations_file(self):
@@ -59,5 +63,6 @@ class GameState:
     #Print out the values scraped from the emulator, this is for debugging
     #purposes, has little to no use in an actual program
     def print_state(self):
-        for i in range(4):
-            self.players[i].print_data()
+        print(self.global_data)
+        #for i in range(4):
+            #self.players[i].print_data()

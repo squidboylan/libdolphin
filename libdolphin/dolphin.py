@@ -9,8 +9,9 @@ import time
 import datetime
 import binascii
 import yaml
-import libdolphin.melee.gamestate
+import libdolphin.melee.menu_helper
 import libdolphin.melee.techskill
+import libdolphin.melee.gamestate
 from controller import *
 
 class Dolphin:
@@ -56,6 +57,24 @@ if __name__ == "__main__":
             prev_frame = game.global_data['frame_num']
 
             game.update()
+            game.print_state()
+
+
+            if game.players[1].static_block_data['state'] == 0:
+                if dolphin.controller2.input_queue.empty():
+                    libdolphin.melee.menu_helper.select_character(game,
+                            dolphin.controller2, "captain falcon",
+                            game.players[1])
+                    """
+                    dolphin.controller2.set_stick(libdolphin.controller.Buttons.main_stick.value,
+                            .75, 0.5, 1)
+                    dolphin.controller2.set_stick(libdolphin.controller.Buttons.main_stick.value,
+                            0.5, 0.5, 59)
+                    dolphin.controller2.set_stick(libdolphin.controller.Buttons.main_stick.value,
+                            0.5, .75, 1)
+                    dolphin.controller2.set_stick(libdolphin.controller.Buttons.main_stick.value,
+                            0.5, 0.5, 59)
+                    """
 
             if game.players[1].static_block_data['state'] == 2:
                 if dolphin.controller2.input_queue.empty():
