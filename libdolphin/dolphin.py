@@ -55,6 +55,7 @@ if __name__ == "__main__":
     prev_time = None
     frame_time = 1000000/60.0
     sleep_time = None
+    game_started = False
     try:
         while True:
             prev_frame = game.global_data['frame_num']
@@ -65,11 +66,20 @@ if __name__ == "__main__":
 
             if game.players[1].static_block_data['state'] == 0:
                 if game.players[1].controller.input_queue.empty():
-                    libdolphin.melee.menu_helper.select_character(game, "captain falcon",
+                    libdolphin.melee.menu_helper.select_character(game, "fox",
                             game.players[1])
 
             if game.players[1].static_block_data['state'] == 2:
+                if game_started == False:
+                    game.players[1].controller.empty_queue()
+                    game.players[1].controller.set_stick(libdolphin.controller.Buttons.main_stick.value,
+                            0.5, 0.5, 300)
+                    #libdolphin.melee.techskill.shine(game.players[1])
+                    game_started = True
+
                 if game.players[1].controller.input_queue.empty():
+                    libdolphin.melee.techskill.multishine(game.players[1])
+                """
                     libdolphin.melee.techskill.wavedash("left",
                             game.players[1])
                     game.players[1].controller.set_stick(libdolphin.controller.Buttons.main_stick.value,
@@ -78,6 +88,7 @@ if __name__ == "__main__":
                             game.players[1])
                     game.players[1].controller.set_stick(libdolphin.controller.Buttons.main_stick.value,
                             0.5, 0.5, 5)
+                """
 
             dolphin.next_input(game.global_data['frame_num'] - prev_frame)
 

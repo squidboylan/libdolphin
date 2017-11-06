@@ -77,3 +77,7 @@ class Controller:
                 self.current_input = None
                 if frame_diff > 0:
                     self.next_input(frame_diff)
+
+    def empty_queue(self):
+        while not self.input_queue.empty():
+            self.input_queue.get(False)
