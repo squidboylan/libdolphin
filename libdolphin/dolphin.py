@@ -37,7 +37,7 @@ class Dolphin:
             pass
 
     def run(self):
-        self.process = subprocess.Popen("dolphin-emu -e /home/squid/.local/share/dolphin-emu/Games/smash-1.02.iso", shell=True)
+        self.process = subprocess.Popen(self.dolphin_path + " -e /home/squid/.local/share/dolphin-emu/Games/smash-1.02.iso", shell=True)
 
         self.game.players[1].controller = Controller("/home/squid/.local/share/dolphin-emu/Pipes/Bot2")
         self.game.sock_bind()
