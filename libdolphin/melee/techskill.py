@@ -28,8 +28,6 @@ def shine(player):
     controller.set_stick(libdolphin.controller.Buttons.main_stick.value, .5, 0, 0)
     controller.press_button(libdolphin.controller.Buttons.B.value, libdolphin.controller.Buttons.press.value, 1)
     controller.press_button(libdolphin.controller.Buttons.B.value, libdolphin.controller.Buttons.release.value, 2)
-    controller.press_button(libdolphin.controller.Buttons.X.value, libdolphin.controller.Buttons.press.value, 1)
-    controller.press_button(libdolphin.controller.Buttons.X.value, libdolphin.controller.Buttons.release.value, 1)
     controller.set_stick(libdolphin.controller.Buttons.main_stick.value, .5, .5, 0)
 
 def multishine(player):

@@ -48,7 +48,7 @@ class Dolphin:
                 i.controller.next_input(frame_diff)
 
 if __name__ == "__main__":
-    dolphin = Dolphin()
+    dolphin = Dolphin(dolphin_path="dolphin-emu")
     dolphin.run()
     game = dolphin.game
     curr_time = None
@@ -73,22 +73,20 @@ if __name__ == "__main__":
                 if game_started == False:
                     game.players[1].controller.empty_queue()
                     game.players[1].controller.set_stick(libdolphin.controller.Buttons.main_stick.value,
-                            0.5, 0.5, 300)
-                    #libdolphin.melee.techskill.shine(game.players[1])
+                            0.5, 0.5, 180)
                     game_started = True
 
                 if game.players[1].controller.input_queue.empty():
-                    libdolphin.melee.techskill.multishine(game.players[1])
-                """
+                    libdolphin.melee.techskill.shine(game.players[1])
+                    #game.players[1].controller.set_stick(libdolphin.controller.Buttons.main_stick.value,
+                            #0.5, 0.5, 5)
                     libdolphin.melee.techskill.wavedash("left",
                             game.players[1])
-                    game.players[1].controller.set_stick(libdolphin.controller.Buttons.main_stick.value,
-                            0.5, 0.5, 5)
+                    libdolphin.melee.techskill.shine(game.players[1])
                     libdolphin.melee.techskill.wavedash("right",
                             game.players[1])
-                    game.players[1].controller.set_stick(libdolphin.controller.Buttons.main_stick.value,
-                            0.5, 0.5, 5)
-                """
+                    #game.players[1].controller.set_stick(libdolphin.controller.Buttons.main_stick.value,
+                            #0.5, 0.5, 5)
 
             dolphin.next_input(game.global_data['frame_num'] - prev_frame)
 

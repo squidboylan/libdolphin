@@ -38,7 +38,9 @@ def select_character(game, character, player):
         controller.set_stick(libdolphin.controller.Buttons.main_stick.value,
                 x_vel, y_vel, 1)
 
-        controller.press_button(libdolphin.controller.Buttons.A.value,
-                libdolphin.controller.Buttons.press.value, 0)
-        controller.press_button(libdolphin.controller.Buttons.A.value,
-                libdolphin.controller.Buttons.release.value, 60)
+        if player.character_selected == False:
+            controller.press_button(libdolphin.controller.Buttons.A.value,
+                    libdolphin.controller.Buttons.press.value, 1)
+            controller.press_button(libdolphin.controller.Buttons.A.value,
+                    libdolphin.controller.Buttons.release.value, 0)
+            player.character_selected = True

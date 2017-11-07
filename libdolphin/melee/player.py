@@ -20,6 +20,8 @@ class Player:
         self.static_block_data = {}
         self.character_data = {}
 
+        self.character_selected = False
+
         for i in self.static_block_config.keys():
             self.static_block_data[self.static_block_config[i]['name']] = 0
 
