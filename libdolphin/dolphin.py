@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+from pathlib import Path
+import configparser
 import socket
 import os
 import sys
@@ -15,9 +17,10 @@ import libdolphin.melee.gamestate
 from controller import *
 
 class Dolphin:
-    def __init__(self, game_path="/home/squid/.local/share/dolphin-emu/Games/smash-1.02.iso", dolphin_path="dolphin-emu"):
-        self.sock_path = "/home/squid/.local/share/dolphin-emu/MemoryWatcher/MemoryWatcher"
-        self.locations_path = "/home/squid/.local/share/dolphin-emu/MemoryWatcher/Locations.txt"
+    def __init__(self, game_path=str(Path.home()) + "/.local/share/dolphin-emu/Games/smash-1.02.iso", dolphin_path="dolphin-emu"):
+        self.sock_path = str(Path.home()) + "/.local/share/dolphin-emu/MemoryWatcher/MemoryWatcher"
+        self.locations_path = str(Path.home()) + "/.local/share/dolphin-emu/MemoryWatcher/Locations.txt"
+        self.config_path = str(Path.home()) + "/.config/dolphin-emu/Dolphin.ini"
         self.game_path = game_path
         self.dolphin_path = dolphin_path
         try:
@@ -36,10 +39,18 @@ class Dolphin:
         except FileExistsError:
             pass
 
-    def run(self):
-        self.process = subprocess.Popen(self.dolphin_path + " -e /home/squid/.local/share/dolphin-emu/Games/smash-1.02.iso", shell=True)
+    def configure(self):
+        dolphin_config = configparser.ConfigParser()
+        dolphin_config.read(self.config_path)
+        dolphin_config['Core']['enablecheats'] = "True"
+        with open(self.config_path, 'w') as f:
+            dolphin_config.write(f)
 
-        self.game.players[1].controller = Controller("/home/squid/.local/share/dolphin-emu/Pipes/Bot2")
+    def run(self):
+        self.configure()
+        self.process = subprocess.Popen(self.dolphin_path + " -e " + self.game_path, shell=True)
+
+        self.game.players[1].controller = Controller(str(Path.home()) + "/.local/share/dolphin-emu/Pipes/Bot2")
         self.game.sock_bind()
 
     def next_input(self, frame_diff):
