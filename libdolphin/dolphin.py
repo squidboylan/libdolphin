@@ -42,7 +42,12 @@ class Dolphin:
     def configure(self):
         dolphin_config = configparser.ConfigParser()
         dolphin_config.read(self.config_path)
-        dolphin_config['Core']['enablecheats'] = "True"
+        try:
+            dolphin_config['Core']['enablecheats'] = "True"
+        except KeyError:
+            dolphin_config['Core'] = {}
+            dolphin_config['Core']['enablecheats'] = "True"
+
         with open(self.config_path, 'w') as f:
             dolphin_config.write(f)
 
