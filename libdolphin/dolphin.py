@@ -98,8 +98,9 @@ if __name__ == "__main__":
         character = sys.argv[1]
     except IndexError:
         character = "fox"
-    bot_ports = [2,3]
-    dolphin = Dolphin(dolphin_path="dolphin-emu", bot_ports = bot_ports)
+    bot_ports = [2,3,4]
+    human_ports = [1]
+    dolphin = Dolphin(dolphin_path="dolphin-emu", bot_ports = bot_ports, human_ports = human_ports)
     dolphin.run()
     game = dolphin.game
     curr_time = None

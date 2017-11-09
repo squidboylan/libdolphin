@@ -32,12 +32,12 @@
   index: 0
 
 # Location of p4's cursor on the character select screen
-01116B6C:
+"0111674C":
   name: p4_cursor_x
   type: "<f"
   index: 0
 
-01116B70:
+"01116750":
   name: p4_cursor_y
   type: "<f"
   index: 0
