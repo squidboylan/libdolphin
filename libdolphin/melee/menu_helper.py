@@ -11,8 +11,8 @@ def select_character(game, character, player):
     controller = player.controller
     x = menu_data[character]['x']
     y = menu_data[character]['y']
-    x_diff = x - game.global_data['p2_cursor_x']
-    y_diff = y - game.global_data['p2_cursor_y']
+    x_diff = x - game.global_data['p' + str(player.player_num) + '_cursor_x']
+    y_diff = y - game.global_data['p' + str(player.player_num) + '_cursor_y']
 
     if abs(x_diff) >= 1.24:
         if x_diff > 0:

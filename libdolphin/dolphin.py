@@ -98,7 +98,8 @@ if __name__ == "__main__":
         character = sys.argv[1]
     except IndexError:
         character = "fox"
-    dolphin = Dolphin(dolphin_path="dolphin-emu")
+    bot_ports = [2,3]
+    dolphin = Dolphin(dolphin_path="dolphin-emu", bot_ports = bot_ports)
     dolphin.run()
     game = dolphin.game
     curr_time = None
@@ -113,28 +114,30 @@ if __name__ == "__main__":
             game.update()
             game.print_state()
 
+            for i in bot_ports:
+                if game.players[i-1].static_block_data['state'] == 0:
+                    if game.players[i-1].controller.input_queue.empty():
+                        libdolphin.melee.menu_helper.select_character(game, character,
+                                game.players[i-1])
 
-            if game.players[1].static_block_data['state'] == 0:
-                if game.players[1].controller.input_queue.empty():
-                    libdolphin.melee.menu_helper.select_character(game, character,
-                            game.players[1])
-
-            if game.players[1].static_block_data['state'] == 2:
+            if game.players[i-1].static_block_data['state'] == 2:
                 if game_started == False:
-                    game.players[1].controller.empty_queue()
-                    game.players[1].controller.set_stick(libdolphin.controller.Buttons.main_stick.value,
-                            0.5, 0.5, 180)
+                    for i in bot_ports:
+                        game.players[i-1].controller.empty_queue()
+                        game.players[i-1].controller.set_stick(libdolphin.controller.Buttons.main_stick.value,
+                                0.5, 0.5, 180)
                     game_started = True
 
-                if game.players[1].controller.input_queue.empty():
-                    if character == "fox":
-                        libdolphin.melee.techskill.shine(game.players[1])
-                    libdolphin.melee.techskill.wavedash("left",
-                            game.players[1])
-                    if character == "fox":
-                        libdolphin.melee.techskill.shine(game.players[1])
-                    libdolphin.melee.techskill.wavedash("right",
-                            game.players[1])
+            for i in bot_ports:
+                    if game.players[i-1].controller.input_queue.empty():
+                        if character == "fox":
+                            libdolphin.melee.techskill.shine(game.players[i-1])
+                        libdolphin.melee.techskill.wavedash("left",
+                                game.players[i-1])
+                        if character == "fox":
+                            libdolphin.melee.techskill.shine(game.players[i-1])
+                        libdolphin.melee.techskill.wavedash("right",
+                                game.players[i-1])
 
             dolphin.next_input(game.global_data['frame_num'] - prev_frame)
 
