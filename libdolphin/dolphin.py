@@ -115,13 +115,13 @@ if __name__ == "__main__":
             game.update()
             game.print_state()
 
-            for i in bot_ports:
-                if game.players[i-1].static_block_data['state'] == 0:
+            if game.players[bot_ports[0]-1].static_block_data['state'] == 0:
+                for i in bot_ports:
                     if game.players[i-1].controller.input_queue.empty():
                         libdolphin.melee.menu_helper.select_character(game, character,
                                 game.players[i-1])
 
-            if game.players[i-1].static_block_data['state'] == 2:
+            elif game.players[bot_ports[0]-1].static_block_data['state'] == 2:
                 if game_started == False:
                     for i in bot_ports:
                         game.players[i-1].controller.empty_queue()
@@ -129,16 +129,17 @@ if __name__ == "__main__":
                                 0.5, 0.5, 180)
                     game_started = True
 
-            for i in bot_ports:
-                    if game.players[i-1].controller.input_queue.empty():
-                        if character == "fox":
-                            libdolphin.melee.techskill.shine(game.players[i-1])
-                        libdolphin.melee.techskill.wavedash("left",
-                                game.players[i-1])
-                        if character == "fox":
-                            libdolphin.melee.techskill.shine(game.players[i-1])
-                        libdolphin.melee.techskill.wavedash("right",
-                                game.players[i-1])
+                else:
+                    for i in bot_ports:
+                        if game.players[i-1].controller.input_queue.empty():
+                            if character == "fox":
+                                libdolphin.melee.techskill.shine(game.players[i-1])
+                            libdolphin.melee.techskill.wavedash("left",
+                                    game.players[i-1])
+                            if character == "fox":
+                                libdolphin.melee.techskill.shine(game.players[i-1])
+                            libdolphin.melee.techskill.wavedash("right",
+                                    game.players[i-1])
 
             dolphin.next_input(game.global_data['frame_num'] - prev_frame)
 
