@@ -89,15 +89,14 @@ class Dolphin:
         self.game.sock_bind()
 
     def next_input(self, frame_diff):
-        for i in self.game.players:
-            if i.controller:
-                i.controller.next_input(frame_diff)
+        for i in self.bot_ports:
+            self.game.players[i-1].controller.next_input(frame_diff)
 
 if __name__ == "__main__":
     try:
         character = sys.argv[1]
     except IndexError:
-        character = "fox"
+        character = "captain falcon"
     bot_ports = [2,3,4]
     human_ports = [1]
     dolphin = Dolphin(dolphin_path="dolphin-emu", bot_ports = bot_ports, human_ports = human_ports)
