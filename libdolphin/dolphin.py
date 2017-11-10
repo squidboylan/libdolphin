@@ -70,7 +70,7 @@ class Dolphin:
             gcpadnew_config['GCPad' + str(i)] = controller_config['GCPad']
             gcpadnew_config['GCPad' + str(i)]['device'] = "Pipe/0/Bot" + str(i)
             try:
-                os.mkfifo(self.pipes_path + "Bot" + str(i + 1))
+                os.mkfifo(self.pipes_path + "Bot" + str(i))
             except:
                 pass
 
@@ -97,11 +97,12 @@ if __name__ == "__main__":
         character = sys.argv[1]
     except IndexError:
         character = "donkey kong"
-    bot_ports = [2,3,4]
+    bot_ports = [1,2,3,4]
     started = {}
     for i in bot_ports:
         started[i] = False
-    human_ports = [1]
+    #human_ports = [1]
+    human_ports = []
     dolphin = Dolphin(dolphin_path="dolphin-emu", bot_ports = bot_ports, human_ports = human_ports)
     dolphin.run()
     game = dolphin.game
@@ -109,12 +110,18 @@ if __name__ == "__main__":
     prev_time = None
     frame_time = 1000000/60.0
     sleep_time = None
+    selected_stage = False
     try:
         while True:
             prev_frame = game.global_data['frame_num']
 
             game.update()
             game.print_state()
+
+            if len(bot_ports) == 4 and game.players[0].static_block_data['state'] == 0 and selected_stage == False:
+                if game.players[0].character_selected and game.players[1].character_selected and game.players[2].character_selected and game.players[3].character_selected:
+                    libdolphin.melee.menu_helper.start_and_select_random_stage(game)
+                    selected_stage = True
 
             for i in bot_ports:
                 if game.players[i-1].static_block_data['state'] == 0:

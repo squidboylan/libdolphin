@@ -11,6 +11,7 @@ class Buttons(Enum):
     X = "X"
     Y = "Y"
     Z = "Z"
+    START = "START"
 
     main_stick = "MAIN"
     c_stick = "C"

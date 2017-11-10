@@ -35,12 +35,29 @@ def select_character(game, character, player):
                 x_vel, y_vel, 1)
 
     else:
-        controller.set_stick(libdolphin.controller.Buttons.main_stick.value,
-                x_vel, y_vel, 1)
-
         if player.character_selected == False:
+            controller.set_stick(libdolphin.controller.Buttons.main_stick.value,
+                    x_vel, y_vel, 1)
             controller.press_button(libdolphin.controller.Buttons.A.value,
                     libdolphin.controller.Buttons.press.value, 1)
             controller.press_button(libdolphin.controller.Buttons.A.value,
                     libdolphin.controller.Buttons.release.value, 0)
             player.character_selected = True
+
+def start_and_select_random_stage(game):
+    for i in game.players:
+        if i.controller:
+            controller = i.controller
+
+    #controller.empty_queue()
+
+    controller.press_button(libdolphin.controller.Buttons.START.value,
+            libdolphin.controller.Buttons.release.value, 60)
+    controller.press_button(libdolphin.controller.Buttons.START.value,
+            libdolphin.controller.Buttons.press.value, 30)
+    controller.press_button(libdolphin.controller.Buttons.START.value,
+            libdolphin.controller.Buttons.release.value, 60)
+    controller.press_button(libdolphin.controller.Buttons.START.value,
+            libdolphin.controller.Buttons.press.value, 30)
+    controller.press_button(libdolphin.controller.Buttons.START.value,
+            libdolphin.controller.Buttons.release.value, 30)
