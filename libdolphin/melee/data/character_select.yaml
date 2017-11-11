@@ -2,14 +2,149 @@
 "captain falcon":
   x: 19.4
   y: 19.0
-  id: 0
+  external_id: 0
+  internal_id: 2
 
 "donkey kong":
   x: 12
   y: 18.5
-  id: 1
+  external_id: 1
+  internal_id: 3
 
 "fox":
   x: -23
   y: 10
-  id: 10
+  external_id: 2
+  internal_id: 1
+
+"luigi":
+  x: -18.5
+  y: 15.5
+  external_id: 7
+  internal_id: 17
+
+"doc":
+  x: -31
+  y: 18
+  external_id: 7
+  internal_id: 17
+
+"mario":
+  x: -23
+  y: 18
+  external_id: 8
+  internal_id: 0
+
+"bowser":
+  x: -10
+  y: 18
+  external_id: 5
+  internal_id: 5
+
+"peach":
+  x: -2.5
+  y: 18
+  external_id: 12
+  internal_id: 9
+
+"yoshi":
+  x: 4.5
+  y: 18
+  external_id: 17
+  internal_id: 14
+
+"ganondorf":
+  x: 24.8
+  y: 18
+  external_id: 25
+  internal_id: 25
+
+"falco":
+  x: -29.5
+  y: 10.5
+  external_id: 20
+  internal_id: 22
+
+"ness":
+  x: -16
+  y: 10.5
+  external_id: 11
+  internal_id: 8
+
+"ice climbers":
+  x: -10
+  y: 11.5
+  external_id: 14
+  internal_id: 10
+
+"kirby":
+  x: -2.5
+  y: 11.5
+  external_id: 4
+  internal_id: 4
+
+"samus":
+  x: 4.5
+  y: 11.5
+  external_id: 16
+  internal_id: 13
+
+"zelda":
+  x: 11.5
+  y: 11.5
+  external_id: 18
+  internal_id: 19
+
+"link":
+  x: 18.5
+  y: 11.5
+  external_id: 6
+  internal_id: 6
+
+"young link":
+  x: 25.5
+  y: 11.5
+  external_id: 21
+  internal_id: 20
+
+"pichu":
+  x: -23
+  y: 4.5
+  external_id: 24
+  internal_id: 23
+
+"pikachu":
+  x: -16.5
+  y: 4.5
+  external_id: 13
+  internal_id: 12
+
+"jigglypuff":
+  x: -9.5
+  y: 4.5
+  external_id: 15
+  internal_id: 15
+
+"mewtwo":
+  x: -2
+  y: 4.5
+  external_id: 10
+  internal_id: 16
+
+"game and watch":
+  x: 5
+  y: 4.5
+  external_id: 3
+  internal_id: 24
+
+"marth":
+  x: 12
+  y: 4.5
+  external_id: 9
+  internal_id: 18
+
+"roy":
+  x: 18
+  y: 4.5
+  external_id: 23
+  internal_id: 26
