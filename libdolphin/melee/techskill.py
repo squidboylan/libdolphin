@@ -1,5 +1,6 @@
 import libdolphin.controller
 
+# Wavedash right or left
 def wavedash(direction, player):
     jump_squat = player.character_data['jump_squat']
     controller = player.controller
@@ -24,6 +25,7 @@ def wavedash(direction, player):
         controller.set_stick(libdolphin.controller.Buttons.main_stick.value, .5, .5, 0)
         controller.press_button(libdolphin.controller.Buttons.L.value, libdolphin.controller.Buttons.release.value, 10)
 
+# Shine and reset the main stick, no jump cancel
 def shine(player):
     controller = player.controller
 
@@ -32,6 +34,7 @@ def shine(player):
     controller.press_button(libdolphin.controller.Buttons.B.value, libdolphin.controller.Buttons.release.value, 2)
     controller.set_stick(libdolphin.controller.Buttons.main_stick.value, .5, .5, 0)
 
+# Shine and jumpcancel the shine
 def multishine(player):
     controller = player.controller
 

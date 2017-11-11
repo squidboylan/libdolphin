@@ -127,6 +127,7 @@ class Hitbox:
             string_pos = binascii.hexlify(struct.pack(">I", struct.unpack(">I", i_bin)[0] + struct.unpack(">I", self.start_pos_bin)[0]))
             self.hitbox_data_config[self.player_start_pos + " " + string_pos.upper().decode('utf-8').lstrip('0')] = self.hitbox_config_file['offset'][i]
 
+    # Generate the locations file contents
     def generate_locations_file(self, contents):
         contents += "# Start of hitbox" + str(self.hitbox_num) + " contents\n"
         for i in self.hitbox_data_config.keys():

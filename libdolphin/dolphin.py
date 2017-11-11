@@ -61,7 +61,6 @@ class Dolphin:
         with open(self.config_path, 'w') as f:
             dolphin_config.write(f)
 
-        #copyfile(os.path.dirname(__file__) + "/melee/data/GCPadNew.ini", self.config_dir + "/GCPadNew.ini")
         gcpadnew_config = configparser.ConfigParser()
         controller_config = configparser.ConfigParser()
         controller_config.read(os.path.dirname(__file__) + "/melee/data/GCPadNew.ini")
@@ -80,6 +79,7 @@ class Dolphin:
         with open(self.config_dir + "/GCPadNew.ini", 'w') as f:
             gcpadnew_config.write(f)
 
+    # Run the dolphin emulator and setup the bot controllers
     def run(self):
         self.configure()
         self.process = subprocess.Popen(self.dolphin_path + " -e " + self.game_path, shell=True)
@@ -88,6 +88,7 @@ class Dolphin:
             self.game.players[i-1].controller = Controller(str(Path.home()) + "/.local/share/dolphin-emu/Pipes/Bot" + str(i))
         self.game.sock_bind()
 
+    # Send the next input for each bot controller to the emulator
     def next_input(self, frame_diff):
         for i in self.bot_ports:
             self.game.players[i-1].controller.next_input(frame_diff)
@@ -97,12 +98,12 @@ if __name__ == "__main__":
         character = sys.argv[1]
     except IndexError:
         character = "donkey kong"
-    bot_ports = [1,2,3,4]
+    bot_ports = [3,4]
     started = {}
     for i in bot_ports:
         started[i] = False
     #human_ports = [1]
-    human_ports = []
+    human_ports = [1]
     dolphin = Dolphin(dolphin_path="dolphin-emu", bot_ports = bot_ports, human_ports = human_ports)
     dolphin.run()
     game = dolphin.game
@@ -116,7 +117,7 @@ if __name__ == "__main__":
             prev_frame = game.global_data['frame_num']
 
             game.update()
-            game.print_state()
+            #game.print_state()
 
             if len(bot_ports) == 4 and game.players[0].static_block_data['state'] == 0 and selected_stage == False:
                 if game.players[0].character_selected and game.players[1].character_selected and game.players[2].character_selected and game.players[3].character_selected:

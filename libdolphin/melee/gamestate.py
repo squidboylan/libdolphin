@@ -49,7 +49,7 @@ class GameState:
             if self.global_data_config[data[0]]['name'] == "frame_num":
                 return
 
-
+    # Generate the locations.txt file contents
     def generate_locations_file(self):
         contents = "#START OF GLOBAL DATA\n"
         for i in self.global_data_config.keys():
