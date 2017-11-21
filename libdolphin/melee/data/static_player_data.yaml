@@ -78,3 +78,18 @@ offset:
     name: "jump_squat"
     type: "<f"
     index: 0
+  # These are the coordinates used for physics (at least i think so),
+  # calculations should use these as y_pos only works when in the air, y_phys
+  # always works
+  "6F4":
+    name: "x_phys"
+    type: "<f"
+    index: 0
+  "6F8":
+    name: "y_phys"
+    type: "<f"
+    index: 0
+  "6FC":
+    name: "z_phys"
+    type: "<f"
+    index: 0

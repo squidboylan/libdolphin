@@ -64,5 +64,5 @@ class GameState:
     #purposes, has little to no use in an actual program
     def print_state(self):
         print(self.global_data)
-        #for i in range(4):
-            #self.players[i].print_data()
+        for i in range(4):
+            self.players[i].print_data()
