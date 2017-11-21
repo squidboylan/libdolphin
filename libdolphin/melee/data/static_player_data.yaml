@@ -14,6 +14,11 @@ offset:
     name: "slot"
     type: "<BBBB"
     index: 3
+  # Action State
+  "10":
+    name: "action_state"
+    type: "<I"
+    index: 0
   # Direction the character is pointing, -1 for left, 1 for right
   "2C":
     name: "direction"
