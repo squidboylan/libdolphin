@@ -97,14 +97,18 @@ if __name__ == "__main__":
     try:
         character = sys.argv[1]
     except IndexError:
-        character = "donkey kong"
-    bot_ports = [3,4]
+        character = "fox"
+    try:
+        emu_path = sys.argv[2]
+    except IndexError:
+        emu_path = "dolphin-emu"
+    bot_ports = [1,2,4]
     started = {}
     for i in bot_ports:
         started[i] = False
-    #human_ports = [1]
-    human_ports = [1]
-    dolphin = Dolphin(dolphin_path="dolphin-emu", bot_ports = bot_ports, human_ports = human_ports)
+    human_ports = [3]
+    #human_ports = []
+    dolphin = Dolphin(dolphin_path=emu_path, bot_ports = bot_ports, human_ports = human_ports)
     dolphin.run()
     game = dolphin.game
     curr_time = None
@@ -117,7 +121,7 @@ if __name__ == "__main__":
             prev_frame = game.global_data['frame_num']
 
             game.update()
-            #game.print_state()
+            game.print_state()
 
             if len(bot_ports) == 4 and game.players[0].static_block_data['state'] == 0 and selected_stage == False:
                 if game.players[0].character_selected and game.players[1].character_selected and game.players[2].character_selected and game.players[3].character_selected:
