@@ -126,7 +126,7 @@ if __name__ == "__main__":
             if len(human_ports) == 0 and game.players[0].static_block_data['state'] == 0 and selected_stage == False:
                 #if game.players[0].character_selected and game.players[1].character_selected and game.players[2].character_selected and game.players[3].character_selected:
                 ready = True
-                for i in game.players
+                for i in game.players:
                     if not i.character_selected:
                         ready = False
                 if not ready:
