@@ -101,13 +101,13 @@ if __name__ == "__main__":
     try:
         emu_path = sys.argv[2]
     except IndexError:
-        emu_path = "dolphin-emu"
-    bot_ports = [1,2,4]
+        emu_path = "dolphin-emu-nogui"
+    bot_ports = [1,2,3,4]
     started = {}
     for i in bot_ports:
         started[i] = False
-    human_ports = [3]
-    #human_ports = []
+    #human_ports = [3]
+    human_ports = []
     dolphin = Dolphin(dolphin_path=emu_path, bot_ports = bot_ports, human_ports = human_ports)
     dolphin.run()
     game = dolphin.game
