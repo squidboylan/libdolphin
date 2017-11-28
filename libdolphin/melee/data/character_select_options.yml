@@ -1,0 +1,20 @@
+---
+p1:
+  type_change:
+    x: -30
+    y: -2
+
+p2:
+  type_change:
+    x: -15
+    y: -2
+
+p3:
+  type_change:
+    x: 0
+    y: -2
+
+p4:
+  type_change:
+    x: 15
+    y: -2
