@@ -20,7 +20,8 @@ class GameState:
         #addresses as configured in the yaml file
         self.global_data = {}
         for i in self.global_data_config.keys():
-            self.global_data[self.global_data_config[i]["name"]] = 0
+            for j in self.global_data_config[i]:
+                self.global_data[j["name"]] = 0
 
    #Bind to the socket for reading from later
     def sock_bind(self):
@@ -37,17 +38,20 @@ class GameState:
             #global data, else update the players
             if data[0] in self.global_data_config:
                 val = data[1].strip('\x00').zfill(8)
-                val = struct.unpack(self.global_data_config[data[0]]['type'],
-                        binascii.unhexlify(val))[self.global_data_config[data[0]]['index']]
-                self.global_data[self.global_data_config[data[0]]['name']] = val
+                for i in self.global_data_config[data[0]]:
+                    val_tmp = struct.unpack(i['type'], binascii.unhexlify(val))[i['index']]
+                    self.global_data[i['name']] = val_tmp
+
+                    # If the frame has incrememnted return so logic can process
+                    # the new frame
+                    if i['name'] == "frame_num":
+                        return
             else:
                 for i in range(4):
                     r = self.players[i].update(data)
                     if r == 1:
                         return
 
-            if self.global_data_config[data[0]]['name'] == "frame_num":
-                return
 
     # Generate the locations.txt file contents
     def generate_locations_file(self):

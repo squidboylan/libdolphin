@@ -1,71 +1,92 @@
 # Location of p1's cursor on the character select screen
 01118DEC:
-  name: p1_cursor_x
-  type: "<f"
-  index: 0
+  - name: p1_cursor_x
+    type: "<f"
+    index: 0
 
 01118DF0:
-  name: p1_cursor_y
-  type: "<f"
-  index: 0
+  - name: p1_cursor_y
+    type: "<f"
+    index: 0
 
 # Location of p2's cursor on the character select screen
 0111826C:
-  name: p2_cursor_x
-  type: "<f"
-  index: 0
+  - name: p2_cursor_x
+    type: "<f"
+    index: 0
 
 01118270:
-  name: p2_cursor_y
-  type: "<f"
-  index: 0
+  - name: p2_cursor_y
+    type: "<f"
+    index: 0
 
 # Location of p3's cursor on the character select screen
 011176EC:
-  name: p3_cursor_x
-  type: "<f"
-  index: 0
+  - name: p3_cursor_x
+    type: "<f"
+    index: 0
 
 011176F0:
-  name: p3_cursor_y
-  type: "<f"
-  index: 0
+  - name: p3_cursor_y
+    type: "<f"
+    index: 0
 
 # Location of p4's cursor on the character select screen
 "0111674C":
-  name: p4_cursor_x
-  type: "<f"
-  index: 0
+  - name: p4_cursor_x
+    type: "<f"
+    index: 0
 
 "01116750":
-  name: p4_cursor_y
-  type: "<f"
-  index: 0
+  - name: p4_cursor_y
+    type: "<f"
+    index: 0
 
 004D7420:
-  name: frame_num
-  type: "<I"
-  index: 0
+  - name: frame_num
+    type: "<I"
+    index: 0
 
-  #013F0328:
-  #  name: ready_banner
-  #  type: "<I"
-  #  index: 0
-  #
-  #004D6CAD:
-  #  name: stage_select_1
-  #  type: "<I"
-  #  index: 0
-  #
-  #004D6CB1:
-  #  name: stage_select_2
-  #  type: "<I"
-  #  index: 0
-  #004D6CB5:
-  #  name: stage_select_3
-  #  type: "<I"
-  #  index: 0
-  #004D6CB9:
-  #  name: stage_select_4
-  #  type: "<I"
-  #  index: 0
+003F0E08:
+  - name: p1_char_selected
+    type: "<BBBB"
+    index: 0
+  - name: p1_char_costume
+    type: "<BBBB"
+    index: 2
+  - name: p1_char_mode
+    type: "<BBBB"
+    index: 3
+
+003F0E2C:
+  - name: p2_char_selected
+    type: "<BBBB"
+    index: 0
+  - name: p2_char_costume
+    type: "<BBBB"
+    index: 2
+  - name: p2_char_mode
+    type: "<BBBB"
+    index: 3
+
+803F0E50:
+  - name: p3_char_selected
+    type: "<BBBB"
+    index: 0
+  - name: p3_char_costume
+    type: "<BBBB"
+    index: 2
+  - name: p3_char_mode
+    type: "<BBBB"
+    index: 3
+
+003F0E74:
+  - name: p4_char_selected
+    type: "<BBBB"
+    index: 0
+  - name: p4_char_costume
+    type: "<BBBB"
+    index: 2
+  - name: p4_char_mode
+    type: "<BBBB"
+    index: 3
