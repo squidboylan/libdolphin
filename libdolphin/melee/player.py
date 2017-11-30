@@ -19,6 +19,7 @@ class Player:
 
         self.static_block_data = {}
         self.character_data = {}
+        self.set_cpu = False
 
         self.character_selected = False
 
