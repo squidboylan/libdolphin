@@ -1,0 +1,19 @@
+start_pos: "0049E6C8"
+
+offset:
+  "0":
+    name: "camera_bound_left"
+    type: "<f"
+    index: 0
+  "4":
+    name: "camera_bound_right"
+    type: "<f"
+    index: 0
+  "8":
+    name: "camera_bound_top"
+    type: "<f"
+    index: 0
+  "C":
+    name: "camera_bound_bottom"
+    type: "<f"
+    index: 0

@@ -1,5 +1,6 @@
 import socket
 from libdolphin.melee.player import Player
+from libdolphin.melee.stage import Stage
 import struct
 import yaml
 import binascii
@@ -12,6 +13,8 @@ class GameState:
         self.sock_path = sock_path
         for i in range(4):
             self.players.append(Player(i+1))
+
+        self.stage = Stage()
 
         with open(os.path.dirname(__file__) + "/data/globals.yaml", "r") as f:
             self.global_data_config = yaml.load(f.read())
@@ -46,11 +49,16 @@ class GameState:
                     # the new frame
                     if i['name'] == "frame_num":
                         return
+
+            r = self.stage.update(data)
+            if r == 1:
+                continue
+
             else:
                 for i in range(4):
                     r = self.players[i].update(data)
                     if r == 1:
-                        return
+                        break
 
 
     # Generate the locations.txt file contents
@@ -58,6 +66,8 @@ class GameState:
         contents = "#START OF GLOBAL DATA\n"
         for i in self.global_data_config.keys():
             contents += i + '\n'
+
+        contents = self.stage.generate_locations_file(contents)
 
         for i in range(4):
             contents = self.players[i].generate_locations_file(contents)
@@ -68,5 +78,6 @@ class GameState:
     #purposes, has little to no use in an actual program
     def print_state(self):
         print(self.global_data)
+        self.stage.print_data()
         for i in range(4):
             self.players[i].print_data()
