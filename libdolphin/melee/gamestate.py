@@ -67,10 +67,10 @@ class GameState:
         for i in self.global_data_config.keys():
             contents += i + '\n'
 
-        contents = self.stage.generate_locations_file(contents)
+        contents += self.stage.generate_locations_file()
 
         for i in range(4):
-            contents = self.players[i].generate_locations_file(contents)
+            contents += self.players[i].generate_locations_file()
 
         return contents
 

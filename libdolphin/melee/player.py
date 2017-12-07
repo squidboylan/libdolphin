@@ -73,8 +73,8 @@ class Player:
 
         return 0
 
-    def generate_locations_file(self, contents):
-        contents += "# Start of p" + str(self.player_num) + " contents\n"
+    def generate_locations_file(self):
+        contents = "# Start of p" + str(self.player_num) + " contents\n"
         contents += "# Start of static block\n"
         for i in self.static_block_config.keys():
             contents += "#" + self.static_block_config[i]['name'] + ' \n'
@@ -86,7 +86,7 @@ class Player:
             contents += i + '\n'
 
         for i in self.hitboxes:
-            contents = i.generate_locations_file(contents)
+            contents += i.generate_locations_file()
 
         return contents
 
@@ -129,8 +129,8 @@ class Hitbox:
             self.hitbox_data_config[self.player_start_pos + " " + string_pos.upper().decode('utf-8').lstrip('0')] = self.hitbox_config_file['offset'][i]
 
     # Generate the locations file contents
-    def generate_locations_file(self, contents):
-        contents += "# Start of hitbox" + str(self.hitbox_num) + " contents\n"
+    def generate_locations_file(self):
+        contents = "# Start of hitbox" + str(self.hitbox_num) + " contents\n"
         for i in self.hitbox_data_config.keys():
             contents += "#" + self.hitbox_data_config[i]['name'] + ' \n'
             contents += i + '\n'

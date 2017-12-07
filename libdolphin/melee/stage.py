@@ -37,8 +37,8 @@ class Stage:
 
         return 0
 
-    def generate_locations_file(self, contents):
-        contents += "# Start of stage data\n"
+    def generate_locations_file(self):
+        contents = "# Start of stage data\n"
         for i in self.stage_data_config.keys():
             contents += "#" + self.stage_data_config[i]['name'] + ' \n'
             contents += i + '\n'
