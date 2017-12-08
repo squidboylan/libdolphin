@@ -17,3 +17,19 @@ offset:
     name: "camera_bound_bottom"
     type: "<f"
     index: 0
+  "74":
+    name: "blast_zone_left"
+    type: "<f"
+    index: 0
+  "78":
+    name: "blast_zone_right"
+    type: "<f"
+    index: 0
+  "7C":
+    name: "blast_zone_top"
+    type: "<f"
+    index: 0
+  "80":
+    name: "blast_zone_bottom"
+    type: "<f"
+    index: 0
