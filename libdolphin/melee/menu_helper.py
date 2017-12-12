@@ -17,10 +17,7 @@ def select_character(game, character, player):
         x_diff = x - game.global_data['p' + str(player.player_num) + '_cursor_x']
         y_diff = y - game.global_data['p' + str(player.player_num) + '_cursor_y']
 
-        if math.sqrt(abs(x_diff)**2 + abs(y_diff)**2) > 7:
-            mod = .4
-        else:
-            mod = .2
+        mod = .4
 
         angle = math.atan(y_diff/x_diff)
 
@@ -66,10 +63,7 @@ def change_to_cpu(game, player):
         x_vel = 0.5
         y_vel = 0.5
 
-        if math.sqrt(abs(x_diff)**2 + abs(y_diff)**2) > 7:
-            mod = .2
-        else:
-            mod = .1
+        mod = .4
 
         if y_diff != 0 and x_diff != 0:
             angle = math.atan(y_diff/x_diff)
