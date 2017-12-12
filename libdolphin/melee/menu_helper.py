@@ -47,6 +47,8 @@ def select_character(game, character, player):
             controller.set_stick(libdolphin.controller.Buttons.main_stick.value,
                     0.5, 0.5, 0)
             controller.press_button(libdolphin.controller.Buttons.A.value,
+                    libdolphin.controller.Buttons.release.value, 0)
+            controller.press_button(libdolphin.controller.Buttons.A.value,
                     libdolphin.controller.Buttons.press.value, 1)
             controller.press_button(libdolphin.controller.Buttons.A.value,
                     libdolphin.controller.Buttons.release.value, 0)
@@ -106,11 +108,15 @@ def change_to_cpu(game, player):
                     0.5, 0.5, 0)
             if game.global_data['p' + str(player.player_num) + '_char_mode'] == 0:
                 controller.press_button(libdolphin.controller.Buttons.A.value,
+                        libdolphin.controller.Buttons.release.value, 1)
+                controller.press_button(libdolphin.controller.Buttons.A.value,
                         libdolphin.controller.Buttons.press.value, 1)
                 controller.press_button(libdolphin.controller.Buttons.A.value,
                         libdolphin.controller.Buttons.release.value, 1)
 
             elif game.global_data['p' + str(player.player_num) + '_char_mode'] == 3:
+                controller.press_button(libdolphin.controller.Buttons.A.value,
+                        libdolphin.controller.Buttons.release.value, 1)
                 controller.press_button(libdolphin.controller.Buttons.A.value,
                         libdolphin.controller.Buttons.press.value, 1)
                 controller.press_button(libdolphin.controller.Buttons.A.value,
