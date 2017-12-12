@@ -98,3 +98,7 @@ offset:
     name: "z_phys"
     type: "<f"
     index: 0
+  "1830":
+    name: "percent"
+    type: "<f"
+    index: 0

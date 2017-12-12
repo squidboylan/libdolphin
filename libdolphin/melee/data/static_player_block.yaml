@@ -3,6 +3,9 @@ start_pos:
   2: "00453F10"
   3: "00454DA0"
   4: "00455C30"
+
+sub_char_offset: "B4"
+
 offset:
   # 2 means In-Game, 0 otherwise
   "00":

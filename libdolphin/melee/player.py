@@ -33,6 +33,10 @@ class Player:
         for i in range(4):
             self.hitboxes.append(Hitbox(i+1, self.start_pos))
 
+        i_bin = binascii.unhexlify(self.static_block_config_file['sub_char_offset'].zfill(8))
+        self.subplayer_pointer = binascii.hexlify(struct.pack(">I", struct.unpack(">I", i_bin)[0] + struct.unpack(">I", self.start_pos_bin)[0])).upper().decode("utf-8")
+        self.subplayer = SubPlayer(self.subplayer_pointer + " 2C")
+
     # Generate the dict of addresses from start addresses and offsets, as well
     def generate_config_from_offsets(self):
         self.start_pos = self.static_block_config_file['start_pos'][self.player_num]
@@ -41,7 +45,6 @@ class Player:
         for i in self.static_block_config_file['offset'].keys():
             padded_i = i.zfill(8)
             i_bin = binascii.unhexlify(padded_i)
-            final_pos = self.start_pos_bin + i_bin
             string_pos = binascii.hexlify(struct.pack(">I", struct.unpack(">I", i_bin)[0] + struct.unpack(">I", self.start_pos_bin)[0]))
             self.static_block_config[string_pos.upper().decode("utf-8")] = self.static_block_config_file['offset'][i]
 
@@ -71,6 +74,10 @@ class Player:
             if r == 1:
                 return r
 
+        r = self.subplayer.update(data)
+        if r == 1:
+            return r
+
         return 0
 
     def generate_locations_file(self):
@@ -88,6 +95,8 @@ class Player:
         for i in self.hitboxes:
             contents += i.generate_locations_file()
 
+        contents += self.subplayer.generate_locations_file()
+
         return contents
 
     # Print player data, this is useful for debugging
@@ -99,6 +108,66 @@ class Player:
             for i in self.hitboxes:
                 i.print_data()
 
+            self.subplayer.print_data()
+
+class SubPlayer:
+    # Initialize character memory dicts
+    def __init__(self, pointer_addr):
+        self.pointer_addr = pointer_addr
+        with open(os.path.dirname(__file__) + "/data/static_player_data.yaml", "r") as f:
+            self.character_data_config_file = yaml.load(f.read())
+
+        self.generate_config_from_offsets()
+
+        self.character_data = {}
+
+        for i in self.character_data_config.keys():
+            self.character_data[self.character_data_config[i]['name']] = 0
+
+        self.hitboxes = []
+        for i in range(4):
+            self.hitboxes.append(Hitbox(i+1, self.start_pos))
+
+    # Generate the dict of addresses from start addresses and offsets, as well
+    def generate_config_from_offsets(self):
+        self.start_pos = self.pointer_addr
+        self.character_data_config = {}
+        for i in self.character_data_config_file['offset'].keys():
+            self.character_data_config[self.start_pos.upper() + " " + i.upper()] = self.character_data_config_file['offset'][i]
+
+    # Take data and update the player data
+    def update(self, data):
+        if data[0] in self.character_data_config:
+            val = data[1].strip('\x00').zfill(8)
+            val = struct.unpack(self.character_data_config[data[0]]['type'],
+                    binascii.unhexlify(val))[self.character_data_config[data[0]]['index']]
+            self.character_data[self.character_data_config[data[0]]['name']] = val
+            return 1
+
+        for i in self.hitboxes:
+            r = i.update(data)
+            if r == 1:
+                return r
+
+        return 0
+
+    def generate_locations_file(self):
+        contents = "# Start of subplayer contents\n"
+        for i in self.character_data_config.keys():
+            contents += "#" + self.character_data_config[i]['name'] + '\n'
+            contents += i + '\n'
+
+        for i in self.hitboxes:
+            contents += i.generate_locations_file()
+
+        return contents
+
+    # Print player data, this is useful for debugging
+    def print_data(self):
+        print("START OF SUBPLAYER DATA")
+        print(self.character_data)
+        for i in self.hitboxes:
+            i.print_data()
 
 class Hitbox:
     # Initialize hitbox memory dicts
