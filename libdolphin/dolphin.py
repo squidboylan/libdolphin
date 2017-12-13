@@ -102,27 +102,27 @@ if __name__ == "__main__":
         emu_path = sys.argv[2]
     except IndexError:
         emu_path = "dolphin-emu-nogui"
-    bot_ports = [1]
+    bot_ports = []
     started = {}
     for i in bot_ports:
         started[i] = False
+    #human_ports = [4]
+    stage = "final destination"
     human_ports = []
-    #human_ports = []
-    cpu_ports = [3]
+    cpu_ports = [1,2,3]
     dolphin = Dolphin(dolphin_path=emu_path, bot_ports = bot_ports + cpu_ports, human_ports = human_ports)
     dolphin.run()
     game = dolphin.game
     curr_time = None
     prev_time = None
-    frame_time = 1000000/60.0
-    sleep_time = None
     selected_stage = False
+    game_started = False
     try:
         while True:
             prev_frame = game.global_data['frame_num']
 
             game.update()
-            #game.print_state()
+            game.print_state()
 
             if len(human_ports) == 0 and game.players[0].static_block_data['state'] == 0 and selected_stage == False:
                 ready = True
@@ -130,8 +130,14 @@ if __name__ == "__main__":
                     if not game.players[i-1].character_selected:
                         ready = False
                 if ready:
-                    libdolphin.melee.menu_helper.start_and_select_random_stage(game)
-                    selected_stage = True
+                    if not game_started:
+                        print("starting game")
+                        libdolphin.melee.menu_helper.start_game(game)
+                        game_started = True
+
+                    else:
+                        print("selecting stage")
+                        selected_stage = libdolphin.melee.menu_helper.select_stage(stage, game)
 
             for i in cpu_ports:
                 if game.players[i-1].static_block_data['state'] == 0:

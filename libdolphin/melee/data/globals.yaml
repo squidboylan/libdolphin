@@ -69,7 +69,7 @@
     type: "<BBBB"
     index: 3
 
-803F0E50:
+003F0E50:
   - name: p3_char_selected
     type: "<BBBB"
     index: 0
@@ -90,3 +90,18 @@
   - name: p4_char_mode
     type: "<BBBB"
     index: 3
+
+"00bda810 28 38":
+  - name: stage_select_x
+    type: "<f"
+    index: 0
+
+"00bda810 28 3C":
+  - name: stage_select_y
+    type: "<f"
+    index: 0
+
+"0065CC14":
+  - name: menu
+    type: "<I"
+    index: 0
